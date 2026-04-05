@@ -2,7 +2,8 @@
 // Stil: Bunte Häkelwelt – cremeweiß, Koralle als Akzent, Nunito + Pacifico
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
+import { useWishlist } from "@/contexts/WishlistContext";
 
 const navLinks = [
   { href: "/", label: "Shop" },
@@ -13,6 +14,7 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [location] = useLocation();
+  const { count } = useWishlist();
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-orange-100 shadow-sm">
@@ -45,14 +47,32 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 rounded-lg hover:bg-orange-50 transition-colors"
-          onClick={() => setOpen(!open)}
-          aria-label="Menü öffnen"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Wunschliste + Mobile Menu */}
+        <div className="flex items-center gap-2">
+          <Link
+            href="/wunschliste"
+            className="relative p-2 rounded-full hover:bg-red-50 transition-colors"
+            title="Wunschliste"
+          >
+            <Heart
+              size={22}
+              className={count > 0 ? "text-red-500" : "text-gray-400"}
+              fill={count > 0 ? "currentColor" : "none"}
+            />
+            {count > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {count > 9 ? "9+" : count}
+              </span>
+            )}
+          </Link>
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-orange-50 transition-colors"
+            onClick={() => setOpen(!open)}
+            aria-label="Menü öffnen"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

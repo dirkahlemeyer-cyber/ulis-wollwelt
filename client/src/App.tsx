@@ -6,11 +6,13 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { WishlistProvider } from "./contexts/WishlistContext";
 import Home from "./pages/Home";
 import Kategorien from "./pages/Kategorien";
 import UeberUns from "./pages/UeberUns";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import Wunschliste from "./pages/Wunschliste";
 
 function Router() {
   return (
@@ -20,6 +22,7 @@ function Router() {
       <Route path="/ueber-uns" component={UeberUns} />
       <Route path="/impressum" component={Impressum} />
       <Route path="/datenschutz" component={Datenschutz} />
+      <Route path="/wunschliste" component={Wunschliste} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -29,12 +32,14 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
+      <WishlistProvider>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
+      </WishlistProvider>
     </ErrorBoundary>
   );
 }

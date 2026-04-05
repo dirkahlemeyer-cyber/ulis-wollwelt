@@ -1,13 +1,17 @@
 // ProductCard – Uli's Wollwelt
-// Stil: Bunte Häkelwelt – weiche Karten mit Hover-Effekt und PayPal-Button
+// Stil: Bunte Häkelwelt – weiche Karten mit Hover-Effekt, PayPal-Button und Herz-Button
 import { Product, SHOP_INFO } from "@/lib/data";
-import { ShoppingCart, Package } from "lucide-react";
+import { Package, Heart } from "lucide-react";
+import { useWishlist } from "@/contexts/WishlistContext";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { toggle, isWished } = useWishlist();
+  const wished = isWished(product.id);
+
   const handlePayPal = () => {
     // PayPal-Bezahlung über den "Jetzt kaufen"-Button
     // Öffnet PayPal mit vorausgefüllten Daten
@@ -37,6 +41,18 @@ export default function ProductCard({ product }: ProductCardProps) {
             <Package size={48} className="text-orange-200" />
           </div>
         )}
+        {/* Herz-Button */}
+        <button
+          onClick={() => toggle(product.id)}
+          title={wished ? "Von Wunschliste entfernen" : "Zur Wunschliste hinzufügen"}
+          className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-all duration-200 ${
+            wished
+              ? "bg-red-500 text-white scale-110"
+              : "bg-white/80 text-gray-400 hover:text-red-400 hover:bg-white"
+          }`}
+        >
+          <Heart size={15} fill={wished ? "currentColor" : "none"} />
+        </button>
         {!product.available && (
           <div className="absolute inset-0 bg-white/70 flex items-center justify-center">
             <span className="bg-gray-700 text-white text-xs font-bold px-3 py-1 rounded-full">
