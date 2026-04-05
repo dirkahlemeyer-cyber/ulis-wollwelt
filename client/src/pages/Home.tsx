@@ -3,7 +3,7 @@
 // Farben: Cremeweiß, Koralle, Türkis, Sonnengelb, Mint
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
-import { Search, ChevronDown } from "lucide-react";
+import { Search, ChevronDown, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { products, categories, SHOP_INFO } from "@/lib/data";
 import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
@@ -15,9 +15,10 @@ const HERO_IMAGE =
 export default function Home() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
 
   const filtered = useMemo(() => {
-    let list = products;
+    let list = [...products];
     if (activeCategory) {
       list = list.filter((p) => p.category === activeCategory);
     }
@@ -30,8 +31,29 @@ export default function Home() {
           (p.tags && p.tags.some((t) => t.toLowerCase().includes(q)))
       );
     }
+    if (sortOrder === "asc") {
+      list.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === "desc") {
+      list.sort((a, b) => b.price - a.price);
+    }
     return list;
-  }, [search, activeCategory]);
+  }, [search, activeCategory, sortOrder]);
+
+  const cycleSortOrder = () => {
+    setSortOrder((prev) =>
+      prev === "none" ? "asc" : prev === "asc" ? "desc" : "none"
+    );
+  };
+
+  const sortLabel =
+    sortOrder === "asc"
+      ? "Preis aufsteigend"
+      : sortOrder === "desc"
+      ? "Preis absteigend"
+      : "Sortierung";
+
+  const SortIcon =
+    sortOrder === "asc" ? ArrowUp : sortOrder === "desc" ? ArrowDown : ArrowUpDown;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -131,18 +153,34 @@ export default function Home() {
                 </span>
               )}
             </h2>
-            <div className="relative w-full sm:w-64">
-              <Search
-                size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              />
-              <input
-                type="text"
-                placeholder="Suchen..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 rounded-full border border-orange-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 font-medium"
-              />
+            <div className="flex gap-2 w-full sm:w-auto">
+              {/* Suchfeld */}
+              <div className="relative flex-1 sm:w-56">
+                <Search
+                  size={16}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type="text"
+                  placeholder="Suchen..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 rounded-full border border-orange-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 font-medium"
+                />
+              </div>
+              {/* Preis-Sortierung */}
+              <button
+                onClick={cycleSortOrder}
+                title="Nach Preis sortieren"
+                className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full border text-sm font-semibold transition-all ${
+                  sortOrder !== "none"
+                    ? "bg-orange-500 text-white border-orange-500 shadow-md"
+                    : "bg-white text-gray-600 border-orange-200 hover:border-orange-400 hover:text-orange-500"
+                }`}
+              >
+                <SortIcon size={14} />
+                <span className="hidden sm:inline">{sortLabel}</span>
+              </button>
             </div>
           </div>
 
