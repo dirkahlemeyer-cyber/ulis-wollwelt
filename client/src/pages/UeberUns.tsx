@@ -17,7 +17,7 @@ export default function UeberUns() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
                 <h1 className="text-3xl font-extrabold text-gray-800 mb-4">
-                  💛 Über Uli's Wollwelt
+                  💛 Über Ulis-Wolle-Welt
                 </h1>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   {SHOP_INFO.description}
@@ -50,7 +50,7 @@ export default function UeberUns() {
               <div className="rounded-3xl overflow-hidden shadow-lg">
                 <img
                   src={ABOUT_IMAGE}
-                  alt="Uli's Häkelecke"
+                  alt="Ulis Häkelecke"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -62,7 +62,7 @@ export default function UeberUns() {
         <section className="py-12">
           <div className="container">
             <h2 className="text-2xl font-extrabold text-gray-800 mb-8 text-center">
-              Was Uli's Wollwelt besonders macht
+              Was Ulis-Wolle-Welt besonders macht
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[

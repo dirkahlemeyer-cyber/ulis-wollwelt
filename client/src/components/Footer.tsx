@@ -17,7 +17,7 @@ export default function Footer() {
                 className="font-display text-xl"
                 style={{ color: "oklch(0.62 0.17 28)" }}
               >
-                Uli's Wollwelt
+                Ulis-Wolle-Welt
               </span>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed">
@@ -74,7 +74,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-orange-200 mt-8 pt-6 text-center text-xs text-gray-400">
-          © {new Date().getFullYear()} Uli's Wollwelt · Alle Rechte vorbehalten
+          © {new Date().getFullYear()} Ulis-Wolle-Welt · Alle Rechte vorbehalten
         </div>
       </div>
     </footer>

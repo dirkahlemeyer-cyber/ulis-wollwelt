@@ -26,7 +26,7 @@ export default function Navbar() {
             className="font-display text-2xl leading-none"
             style={{ color: "oklch(0.62 0.17 28)" }}
           >
-            Uli's Wollwelt
+            Ulis-Wolle-Welt
           </span>
         </Link>
 

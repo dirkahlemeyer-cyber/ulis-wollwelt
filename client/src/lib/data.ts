@@ -226,10 +226,10 @@ export const PAYPAL_EMAIL = "uli.albrecht@p"; // Bitte vollständige E-Mail eint
 
 // Shop-Informationen
 export const SHOP_INFO = {
-  name: "Uli's Wollwelt",
+  name: "Ulis-Wolle-Welt",
   tagline: "Handgemacht mit Herz & Wolle",
   description:
-    "Willkommen in Uli's Wollwelt! Hier findest du liebevoll handgehäkelte und gestrickte Kleinode – von süßen Tierchen bis hin zu bunten Püppchen. Alles wird mit viel Liebe und Sorgfalt von Hand gefertigt.",
+    "Willkommen bei Ulis-Wolle-Welt! Hier findest du liebevoll handgehäkelte und gestrickte Kleinode – von süßen Tierchen bis hin zu bunten Püppchen. Alles wird mit viel Liebe und Sorgfalt von Hand gefertigt.",
   owner: "Ulrike Albrecht",
   email: "uli.albrecht@p", // Bitte vollständige E-Mail eintragen
   shippingInfo:

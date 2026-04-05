@@ -64,7 +64,7 @@ export default function Home() {
         <div className="relative h-[420px] md:h-[520px]">
           <img
             src={HERO_IMAGE}
-            alt="Uli's Wollwelt – handgemachte Häkelarbeiten"
+            alt="Ulis-Wolle-Welt – handgemachte Häkelarbeiten"
             className="w-full h-full object-cover"
           />
           {/* Overlay */}
@@ -72,7 +72,7 @@ export default function Home() {
           {/* Text */}
           <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 max-w-2xl">
             <h1 className="font-display text-4xl md:text-5xl text-white leading-tight drop-shadow-lg mb-3">
-              Uli's Wollwelt
+              Ulis-Wolle-Welt
             </h1>
             <p className="text-white/90 text-lg md:text-xl font-semibold drop-shadow mb-2">
               {SHOP_INFO.tagline}
